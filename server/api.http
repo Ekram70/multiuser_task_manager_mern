@@ -32,3 +32,24 @@ token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NjY3OTg5NjAsImRhdGEiOiJl
 }
 
 ###
+POST http://localhost:5000/api/v1/createTask
+Content-Type: application/json
+token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NjY3OTg5NjAsImRhdGEiOiJla3JhbXVsbGFoNzBAZ21haWwuY29tIiwiaWF0IjoxNjY2NzEyNTYwfQ.7RLRZLaONASt8ofEizUd8YOd7DPRP8-owdC5szsjXBc
+
+{
+    "title": "Fifth task",
+    "description" : "This is a fifth dummy task",
+    "status": "in-progress"
+}
+
+###
+GET http://localhost:5000/api/v1/updateTask/635814178f6bc0b9e5c357b2/completed
+token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NjY3OTg5NjAsImRhdGEiOiJla3JhbXVsbGFoNzBAZ21haWwuY29tIiwiaWF0IjoxNjY2NzEyNTYwfQ.7RLRZLaONASt8ofEizUd8YOd7DPRP8-owdC5szsjXBc
+
+###
+GET http://localhost:5000/api/v1/listTaskByStatus/cancelled
+token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NjY3OTg5NjAsImRhdGEiOiJla3JhbXVsbGFoNzBAZ21haWwuY29tIiwiaWF0IjoxNjY2NzEyNTYwfQ.7RLRZLaONASt8ofEizUd8YOd7DPRP8-owdC5szsjXBc
+
+###
+GET http://localhost:5000/api/v1/taskStatusCount
+token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NjY3OTg5NjAsImRhdGEiOiJla3JhbXVsbGFoNzBAZ21haWwuY29tIiwiaWF0IjoxNjY2NzEyNTYwfQ.7RLRZLaONASt8ofEizUd8YOd7DPRP8-owdC5szsjXBc

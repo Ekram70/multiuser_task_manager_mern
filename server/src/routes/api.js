@@ -8,8 +8,20 @@ const {
   login,
 } = require('../controllers/UsersController');
 
+const {
+  createTask,
+  updateTaskStatus,
+  listTasksByStatus,
+  taskStatusCount,
+} = require('../controllers/TasksController');
+
 router.post('/registration', registration);
 router.post('/login', login);
 router.post('/profileUpdate', AuthVerify, profileUpdate);
+
+router.post('/createtask', AuthVerify, createTask);
+router.get('/updateTask/:id/:status', AuthVerify, updateTaskStatus);
+router.get('/listTaskByStatus/:status', AuthVerify, listTasksByStatus);
+router.get('/taskStatusCount', AuthVerify, taskStatusCount);
 
 module.exports = router;
