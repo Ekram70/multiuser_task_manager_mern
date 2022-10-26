@@ -1,7 +1,15 @@
-import React from 'react';
+import React, { lazy, Suspense } from 'react';
+import LazyLoader from '../components/MasterLayout/LazyLoader';
+const NotFound = lazy(() => import('../components/NotFound/NotFound'));
 
 const Page404 = () => {
-  return <div>Page404</div>;
+  return (
+    <div>
+      <Suspense fallback={<LazyLoader />}>
+        <NotFound />
+      </Suspense>
+    </div>
+  );
 };
 
 export default Page404;

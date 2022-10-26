@@ -1,7 +1,15 @@
-import React from 'react';
+import React, { lazy, Suspense } from 'react';
+import LazyLoader from '../components/MasterLayout/LazyLoader';
+const Login = lazy(() => import('../components/Login/Login'));
 
 const LoginPage = () => {
-  return <div>LoginPage</div>;
+  return (
+    <div>
+      <Suspense fallback={<LazyLoader />}>
+        <Login />
+      </Suspense>
+    </div>
+  );
 };
 
 export default LoginPage;

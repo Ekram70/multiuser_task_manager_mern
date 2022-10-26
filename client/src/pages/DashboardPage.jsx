@@ -1,18 +1,19 @@
 import React, { lazy, Suspense } from 'react';
+
 import LazyLoader from '../components/MasterLayout/LazyLoader';
 import MasterLayout from '../components/MasterLayout/MasterLayout';
-const Profile = lazy(() => import('../components/Profile/Profile'));
+const Dashboard = lazy(() => import('../components/Dashboard/Dashboard'));
 
-const ProfilePage = () => {
+const DashboardPage = () => {
   return (
     <>
       <MasterLayout>
         <Suspense fallback={<LazyLoader />}>
-          <Profile />
+          <Dashboard />
         </Suspense>
       </MasterLayout>
     </>
   );
 };
 
-export default ProfilePage;
+export default DashboardPage;
