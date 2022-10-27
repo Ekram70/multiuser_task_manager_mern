@@ -5,7 +5,7 @@ const createTask = (req, res) => {
   reqBody.email = req.headers['email'];
   TasksModel.create(reqBody, (err, data) => {
     if (err) {
-      res.status(400).json({ status: 'fail', data: err });
+      res.status(200).json({ status: 'fail', data: err });
     } else {
       res.status(200).json({ status: 'success', data: data });
     }
@@ -18,7 +18,7 @@ const deleteTask = (req, res) => {
 
   TasksModel.remove(Query, (err, data) => {
     if (err) {
-      res.status(400).json({ status: 'fail', data: err });
+      res.status(200).json({ status: 'fail', data: err });
     } else {
       res.status(200).json({ status: 'success', data: data });
     }
@@ -33,7 +33,7 @@ const updateTaskStatus = (req, res) => {
 
   TasksModel.updateOne(Query, reqBody, (err, data) => {
     if (err) {
-      res.status(400).json({ status: 'fail', data: err });
+      res.status(200).json({ status: 'fail', data: err });
     } else {
       res.status(200).json({ status: 'success', data: data });
     }
@@ -64,7 +64,7 @@ const listTasksByStatus = (req, res) => {
     ],
     (err, data) => {
       if (err) {
-        res.status(400).json({ status: 'fail', data: err });
+        res.status(200).json({ status: 'fail', data: err });
       } else {
         res.status(200).json({ status: 'success', data: data });
       }
@@ -82,7 +82,7 @@ const taskStatusCount = (req, res) => {
     ],
     (err, data) => {
       if (err) {
-        res.status(400).json({ status: 'fail', data: err });
+        res.status(200).json({ status: 'fail', data: err });
       } else {
         res.status(200).json({ status: 'success', data: data });
       }

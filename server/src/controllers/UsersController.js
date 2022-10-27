@@ -3,10 +3,10 @@ const jwt = require('jsonwebtoken');
 
 const registration = (req, res) => {
   let reqBody = req.body;
-  console.log(reqBody);
+
   UsersModel.create(reqBody, (err, data) => {
     if (err) {
-      res.status(400).json({ status: 'fail', data: err });
+      res.status(200).json({ status: 'fail', data: err });
     } else {
       res.status(200).json({ status: 'success', data: data });
     }
@@ -31,7 +31,7 @@ const login = (req, res) => {
     ],
     (err, data) => {
       if (err) {
-        res.status(400).json({
+        res.status(200).json({
           status: 'fail',
           data: data,
         });
@@ -62,7 +62,7 @@ const profileUpdate = (req, res) => {
   const reqBody = req.body;
   UsersModel.updateOne({ email }, reqBody, (err, data) => {
     if (err) {
-      res.status(400).json({ status: 'fail', data: err });
+      res.status(200).json({ status: 'fail', data: err });
     } else {
       res.status(200).json({ status: 'success', data: data });
     }

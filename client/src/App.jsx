@@ -20,10 +20,10 @@ const App = () => {
         <Routes>
           <Route exact path="/" element={<DashboardPage />} />
           <Route exact path="/Create" element={<CreatePage />} />
-          <Route exact path="/All" element={<NewPage />} />
           <Route exact path="/Progress" element={<ProgressPage />} />
           <Route exact path="/Completed" element={<CompletedPage />} />
           <Route exact path="/Cancelled" element={<CancelledPage />} />
+          <Route exact path="/New" element={<NewPage />} />
           <Route exact path="/Profile" element={<ProfilePage />} />
           <Route exact path="/Login" element={<LoginPage />} />
           <Route exact path="/Registration" element={<RegistrationPage />} />
