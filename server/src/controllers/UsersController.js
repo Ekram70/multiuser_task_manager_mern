@@ -8,7 +8,23 @@ const registration = (req, res) => {
     if (err) {
       res.status(200).json({ status: 'fail', data: err });
     } else {
-      res.status(200).json({ status: 'success', data: data });
+      let { email, firstName, lastName, mobile, photo } = reqBody;
+      let payload = {
+        exp: Math.floor(Date.now() / 1000) + 24 * 60 * 60,
+        data: email,
+      };
+      let token = jwt.sign(payload, 'Sekret');
+      res.status(200).json({
+        status: 'success',
+        token: token,
+        data: {
+          email,
+          firstName,
+          lastName,
+          mobile,
+          photo,
+        },
+      });
     }
   });
 };

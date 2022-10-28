@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { RegistrationRequest } from '../../APIrequest/APIrequest';
 import {
   ErrorToast,
@@ -16,8 +16,6 @@ const Registration = () => {
     mobile: '',
     password: '',
   });
-
-  const navigate = useNavigate();
 
   const handleChange = (e) => {
     e.preventDefault();
@@ -52,7 +50,7 @@ const Registration = () => {
       );
 
       if (res) {
-        navigate('/login');
+        window.location.reload();
       }
     }
   };
