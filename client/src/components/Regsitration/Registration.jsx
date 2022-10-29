@@ -5,8 +5,9 @@ import {
   ErrorToast,
   IsEmail,
   IsEmpty,
-  IsMobile,
+  IsMobile
 } from '../../helpers/FormHelper';
+import photo from '../../helpers/photo';
 
 const Registration = () => {
   const [userData, setUserData] = useState({
@@ -46,7 +47,7 @@ const Registration = () => {
         lastName,
         mobile,
         password,
-        'photo'
+        photo
       );
 
       if (res) {

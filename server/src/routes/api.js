@@ -6,6 +6,7 @@ const {
   registration,
   profileUpdate,
   login,
+  profileDetails,
 } = require('../controllers/UsersController');
 
 const {
@@ -19,6 +20,7 @@ const {
 router.post('/registration', registration);
 router.post('/login', login);
 router.post('/profileUpdate', AuthVerify, profileUpdate);
+router.get('/profileDetails', AuthVerify, profileDetails);
 
 router.post('/createtask', AuthVerify, createTask);
 router.get('/updateTask/:id/:status', AuthVerify, updateTaskStatus);

@@ -19,6 +19,10 @@ app.use(mongoSanitize());
 app.use(xss());
 app.use(hpp());
 
+// request size limit
+app.use(express.json({ limit: '2mb' }));
+app.use(express.urlencoded({ limit: '2mb' }));
+
 // Database Library Import
 const mongoose = require('mongoose');
 

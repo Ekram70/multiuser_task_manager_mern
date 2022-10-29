@@ -5,18 +5,21 @@ import {
   AiOutlineEdit,
   AiOutlineLogout,
   AiOutlineMenuUnfold,
-  AiOutlineUser,
+  AiOutlineUser
 } from 'react-icons/ai';
 import { BsHourglass, BsListNested } from 'react-icons/bs';
 import { MdOutlineCancelPresentation } from 'react-icons/md';
 import { RiDashboardLine } from 'react-icons/ri';
 import { NavLink } from 'react-router-dom';
 import logo from '../../assets/images/logo.svg';
+import { getUserDetails, removeSessions } from '../../helpers/SessionHelper';
 
 const MasterLayout = (props) => {
   const [open, setOpen] = useState(true);
 
-  const onLogout = () => {};
+  const onLogout = () => {
+    removeSessions();
+  };
 
   return (
     <>
@@ -34,14 +37,21 @@ const MasterLayout = (props) => {
 
           <div className="float-right h-auto d-flex">
             <div className="user-dropdown">
-              <img className="icon-nav-img icon-nav" src="" />
+              <img
+                className="icon-nav-img icon-nav"
+                src={getUserDetails()['photo']}
+              />
               <div className="user-dropdown-content">
                 <div className="mt-4 text-center">
-                  <img className="icon-nav-img" src="" />
+                  <img
+                    className="icon-nav-img"
+                    src={getUserDetails()['photo']}
+                  />
+                  <h6>{getUserDetails()['firstName'].toUpperCase()}</h6>
                   <hr className="user-dropdown-divider p-0" />
                 </div>
                 <NavLink to="/Profile" className="side-bar-item">
-                  <AiOutlineUser className="side-bar-icon" />
+                  <AiOutlineUser className="side-bar-item-icon" />
                   <span className="side-bar-item-caption">Profile</span>
                 </NavLink>
                 <a onClick={onLogout} className="side-bar-item">

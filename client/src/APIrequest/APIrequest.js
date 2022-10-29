@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { ErrorToast, SuccessToast } from '../helpers/FormHelper';
 import { getToken, setToken, setUserDetails } from '../helpers/SessionHelper';
+import { setProfile } from '../redux/state-slice/profileSlice';
 import { HideLoader, ShowLoader } from '../redux/state-slice/settingsSlice';
 import { setSummary } from '../redux/state-slice/summarySlice';
 import {
@@ -261,6 +262,71 @@ const UpdateStatusRequest = (id, status) => {
     });
 };
 
+const GetProfileDetails = () => {
+  store.dispatch(ShowLoader());
+  let URL = `${BASEURL}/profileDetails`;
+
+  return axios
+    .get(URL, {
+      headers: {
+        token: getToken(),
+      },
+    })
+    .then((res) => {
+      store.dispatch(HideLoader());
+      if (res.status === 200) {
+        store.dispatch(setProfile(res.data['data']));
+        return res.data['data'][0];
+      } else {
+        ErrorToast('Something Went Wrong');
+        return false;
+      }
+    })
+    .catch((err) => {
+      store.dispatch(HideLoader());
+      ErrorToast('Something Went Wrong');
+      return false;
+    });
+};
+
+const ProfileUpdateRequest = (
+  email,
+  firstName,
+  lastName,
+  mobile,
+  password,
+  photo
+) => {
+  store.dispatch(ShowLoader());
+  let URL = `${BASEURL}/profileUpdate`;
+
+  let postBody = { email, firstName, lastName, mobile, password, photo };
+  let userDetails = { email, firstName, lastName, mobile, photo };
+
+  return axios
+    .post(URL, postBody, {
+      headers: {
+        token: getToken(),
+      },
+    })
+    .then((res) => {
+      store.dispatch(HideLoader());
+      if (res.status === 200) {
+        SuccessToast('Profile Successfully Updated');
+        setUserDetails(userDetails);
+        return true;
+      } else {
+        ErrorToast('Something Went Wrong');
+        return false;
+      }
+    })
+    .catch((err) => {
+      store.dispatch(HideLoader());
+      ErrorToast('Something Went Wrong');
+      return false;
+    });
+};
+
 export {
   RegistrationRequest,
   LoginRequest,
@@ -269,4 +335,6 @@ export {
   SummaryRequest,
   DeleteRequest,
   UpdateStatusRequest,
+  GetProfileDetails,
+  ProfileUpdateRequest,
 };

@@ -53,3 +53,8 @@ token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NjcwNzE4OTUsImRhdGEiOiJl
 ###
 GET http://localhost:5000/api/v1/taskStatusCount
 token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NjY3OTg5NjAsImRhdGEiOiJla3JhbXVsbGFoNzBAZ21haWwuY29tIiwiaWF0IjoxNjY2NzEyNTYwfQ.7RLRZLaONASt8ofEizUd8YOd7DPRP8-owdC5szsjXBc
+
+###
+
+GET http://localhost:5000/api/v1/profileDetails
+token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NjcxNTA1NTIsImRhdGEiOiJla3JhbXVsbGFoNzBAZ21haWwuY29tIiwiaWF0IjoxNjY3MDY0MTUyfQ.LM1OTgxJSeyH1Ywmt0NhycOnStSmEh7x7W-LCIVeB6c
