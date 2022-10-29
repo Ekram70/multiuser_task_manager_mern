@@ -37,9 +37,9 @@ Content-Type: application/json
 token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NjcwNzE4OTUsImRhdGEiOiJla3JhbXVsbGFoNzBAZ21haWwuY29tIiwiaWF0IjoxNjY2OTg1NDk1fQ.Pm_1pyaEm0rTZa5ScDk-v72xArDjZiv0iEZizKAgnGQ
 
 {
-    "title": "Progress task",
+    "title": "New completed task 120",
     "description" : "This is a completed dummy task",
-    "status": "Progress"
+    "status": "Completed"
 }
 
 ###

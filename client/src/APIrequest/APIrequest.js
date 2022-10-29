@@ -2,6 +2,7 @@ import axios from 'axios';
 import { ErrorToast, SuccessToast } from '../helpers/FormHelper';
 import { getToken, setToken, setUserDetails } from '../helpers/SessionHelper';
 import { HideLoader, ShowLoader } from '../redux/state-slice/settingsSlice';
+import { setSummary } from '../redux/state-slice/summarySlice';
 import {
   setCancelledtask,
   setCompletedTask,
@@ -182,4 +183,90 @@ const TaskListByStatus = (status) => {
     });
 };
 
-export { RegistrationRequest, LoginRequest, NewTaskRequest, TaskListByStatus };
+const SummaryRequest = () => {
+  store.dispatch(ShowLoader());
+  let URL = `${BASEURL}/taskStatusCount`;
+
+  axios
+    .get(URL, {
+      headers: {
+        token: getToken(),
+      },
+    })
+    .then((res) => {
+      store.dispatch(HideLoader());
+      if (res.status === 200) {
+        store.dispatch(setSummary(res.data['data']));
+      } else {
+        ErrorToast('Something Went Wrong');
+      }
+    })
+    .catch((err) => {
+      store.dispatch(HideLoader());
+      ErrorToast('Something Went Wrong');
+    });
+};
+
+const DeleteRequest = (id) => {
+  store.dispatch(ShowLoader());
+  let URL = `${BASEURL}/deleteTask/${id}`;
+
+  return axios
+    .get(URL, {
+      headers: {
+        token: getToken(),
+      },
+    })
+    .then((res) => {
+      store.dispatch(HideLoader());
+      if (res.status === 200) {
+        SuccessToast('Delete Successful');
+        return true;
+      } else {
+        ErrorToast('Something Went Wrong');
+        return false;
+      }
+    })
+    .catch((err) => {
+      store.dispatch(HideLoader());
+      ErrorToast('Something Went Wrong');
+      return false;
+    });
+};
+
+const UpdateStatusRequest = (id, status) => {
+  store.dispatch(ShowLoader());
+  let URL = `${BASEURL}/updateTask/${id}/${status}`;
+
+  return axios
+    .get(URL, {
+      headers: {
+        token: getToken(),
+      },
+    })
+    .then((res) => {
+      store.dispatch(HideLoader());
+      if (res.status === 200) {
+        SuccessToast('Status Updated');
+        return true;
+      } else {
+        ErrorToast('Something Went Wrong');
+        return false;
+      }
+    })
+    .catch((err) => {
+      store.dispatch(HideLoader());
+      ErrorToast('Something Went Wrong');
+      return false;
+    });
+};
+
+export {
+  RegistrationRequest,
+  LoginRequest,
+  NewTaskRequest,
+  TaskListByStatus,
+  SummaryRequest,
+  DeleteRequest,
+  UpdateStatusRequest,
+};

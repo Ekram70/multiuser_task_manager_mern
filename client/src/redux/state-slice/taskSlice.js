@@ -13,7 +13,7 @@ const taskSlice = createSlice({
       state.New = action.payload;
     },
     setCompletedTask: (state, action) => {
-      state.Completed = action.payload;
+      state.completed = action.payload;
     },
     setProgressTask: (state, action) => {
       state.Progress = action.payload;

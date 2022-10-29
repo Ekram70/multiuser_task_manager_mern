@@ -13,6 +13,7 @@ const {
   updateTaskStatus,
   listTasksByStatus,
   taskStatusCount,
+  deleteTask,
 } = require('../controllers/TasksController');
 
 router.post('/registration', registration);
@@ -21,6 +22,7 @@ router.post('/profileUpdate', AuthVerify, profileUpdate);
 
 router.post('/createtask', AuthVerify, createTask);
 router.get('/updateTask/:id/:status', AuthVerify, updateTaskStatus);
+router.get('/deleteTask/:id/', AuthVerify, deleteTask);
 router.get('/listTaskByStatus/:status', AuthVerify, listTasksByStatus);
 router.get('/taskStatusCount', AuthVerify, taskStatusCount);
 

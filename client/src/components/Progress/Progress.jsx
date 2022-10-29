@@ -7,6 +7,8 @@ import {
 } from 'react-icons/ai';
 import { useSelector } from 'react-redux';
 import { TaskListByStatus } from '../../APIrequest/APIrequest';
+import DeleteTodo from '../../helpers/DeleteAlert';
+import UpdateTodo from '../../helpers/UpdateAlert';
 
 const Progress = () => {
   useEffect(() => {
@@ -14,6 +16,22 @@ const Progress = () => {
   }, []);
 
   const ProgressList = useSelector((state) => state.task.Progress);
+
+  const DeleteItem = async (idx) => {
+    let del = await DeleteTodo(idx);
+
+    if (del) {
+      TaskListByStatus('Progress');
+    }
+  };
+
+  const UpdateItem = async (idx) => {
+    let upd = await UpdateTodo(idx);
+
+    if (upd) {
+      TaskListByStatus('Progress');
+    }
+  };
 
   return (
     <>
@@ -42,10 +60,16 @@ const Progress = () => {
                   <p className="animated fadeInUp">{item.description}</p>
                   <p className="m-0 animated fadeInUp p-0">
                     <AiOutlineCalendar /> {item.createdOn}
-                    <a className="icon-nav text-danger mx-1">
+                    <a
+                      onClick={() => UpdateItem(item._id, item.status)}
+                      className="icon-nav text-danger mx-1"
+                    >
                       <AiOutlineEdit />
                     </a>
-                    <a className="icon-nav text-danger mx-1">
+                    <a
+                      onClick={() => DeleteItem(item._id)}
+                      className="icon-nav text-danger mx-1"
+                    >
                       <AiOutlineDelete />
                     </a>
                     <a className="badge float-end bg-primary">{item.status}</a>

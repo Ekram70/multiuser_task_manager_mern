@@ -7,13 +7,31 @@ import {
 } from 'react-icons/ai';
 import { useSelector } from 'react-redux';
 import { TaskListByStatus } from '../../APIrequest/APIrequest';
+import DeleteTodo from '../../helpers/DeleteAlert';
+import UpdateTodo from '../../helpers/UpdateAlert';
 
 const Completed = () => {
   useEffect(() => {
     TaskListByStatus('Completed');
   }, []);
 
-  const CompletedList = useSelector((state) => state.task.Completed);
+  const CompletedList = useSelector((state) => state.task.completed);
+
+  const DeleteItem = async (idx) => {
+    let del = await DeleteTodo(idx);
+
+    if (del) {
+      TaskListByStatus('Completed');
+    }
+  };
+
+  const UpdateItem = async (idx) => {
+    let upd = await UpdateTodo(idx);
+
+    if (upd) {
+      TaskListByStatus('Completed');
+    }
+  };
 
   return (
     <>
@@ -42,10 +60,16 @@ const Completed = () => {
                   <p className="animated fadeInUp">{item.description}</p>
                   <p className="m-0 animated fadeInUp p-0">
                     <AiOutlineCalendar /> {item.createdOn}
-                    <a className="icon-nav text-danger mx-1">
+                    <a
+                      onClick={() => UpdateItem(item._id, item.status)}
+                      className="icon-nav text-danger mx-1"
+                    >
                       <AiOutlineEdit />
                     </a>
-                    <a className="icon-nav text-danger mx-1">
+                    <a
+                      onClick={() => DeleteItem(item._id)}
+                      className="icon-nav text-danger mx-1"
+                    >
                       <AiOutlineDelete />
                     </a>
                     <a className="badge float-end bg-success">{item.status}</a>
