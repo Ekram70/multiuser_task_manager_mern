@@ -9,7 +9,6 @@ const Login = () => {
     password: '',
   });
 
-
   let { email, password } = loginData;
 
   const handleChange = (e) => {
@@ -74,10 +73,7 @@ const Login = () => {
                     Sign Up
                   </Link>
                   <br />
-                  <Link
-                    className="text-center animated fadeInUp"
-                    to="/ForgetPass"
-                  >
+                  <Link className="text-center animated fadeInUp" to="/sendOtp">
                     Forget Password
                   </Link>
                 </div>

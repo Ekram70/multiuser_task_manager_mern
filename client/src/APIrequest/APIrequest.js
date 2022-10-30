@@ -1,6 +1,12 @@
 import axios from 'axios';
 import { ErrorToast, SuccessToast } from '../helpers/FormHelper';
-import { getToken, setToken, setUserDetails } from '../helpers/SessionHelper';
+import {
+  getToken,
+  setEmail,
+  setOTP,
+  setToken,
+  setUserDetails,
+} from '../helpers/SessionHelper';
 import { setProfile } from '../redux/state-slice/profileSlice';
 import { HideLoader, ShowLoader } from '../redux/state-slice/settingsSlice';
 import { setSummary } from '../redux/state-slice/summarySlice';
@@ -327,6 +333,93 @@ const ProfileUpdateRequest = (
     });
 };
 
+const VerifyEmailRequest = (email) => {
+  store.dispatch(ShowLoader());
+  let URL = `${BASEURL}/RecoverVerifyEmail/${email}`;
+
+  return axios
+    .get(URL)
+    .then((res) => {
+      store.dispatch(HideLoader());
+      if (res.status === 200) {
+        if (res.data['status'] === 'fail') {
+          ErrorToast('No User Found');
+          return false;
+        } else {
+          SuccessToast('OTP sent to your email');
+          setEmail(email);
+          return true;
+        }
+      } else {
+        ErrorToast('Something Went Wrong');
+        return false;
+      }
+    })
+    .catch((err) => {
+      store.dispatch(HideLoader());
+      ErrorToast('Something Went Wrong');
+      return false;
+    });
+};
+
+const VerifyOtpRequest = (email, otp) => {
+  store.dispatch(ShowLoader());
+  let URL = `${BASEURL}/RecoverVerifyOTP/${email}/${otp}`;
+
+  return axios
+    .get(URL)
+    .then((res) => {
+      store.dispatch(HideLoader());
+      if (res.status === 200) {
+        if (res.data['status'] === 'fail') {
+          ErrorToast(res.data['data']);
+          return false;
+        } else {
+          SuccessToast('OTP verification successful');
+          setOTP(otp);
+          return true;
+        }
+      } else {
+        ErrorToast('Something Went Wrong');
+        return false;
+      }
+    })
+    .catch((err) => {
+      store.dispatch(HideLoader());
+      ErrorToast('Something Went Wrong');
+      return false;
+    });
+};
+
+const ResetPasswordRequest = (email, otp, password) => {
+  store.dispatch(ShowLoader());
+  let URL = `${BASEURL}/RecoverResetPass`;
+  let reqBody = { email, otp, password };
+
+  return axios
+    .post(URL, reqBody)
+    .then((res) => {
+      store.dispatch(HideLoader());
+      if (res.status === 200) {
+        if (res.data['status'] === 'fail') {
+          ErrorToast(res.data['status']);
+          return false;
+        } else {
+          SuccessToast('Password Successfully Updated');
+          return true;
+        }
+      } else {
+        ErrorToast('Something Went Wrong');
+        return false;
+      }
+    })
+    .catch((err) => {
+      store.dispatch(HideLoader());
+      ErrorToast('Something Went Wrong');
+      return false;
+    });
+};
+
 export {
   RegistrationRequest,
   LoginRequest,
@@ -337,4 +430,7 @@ export {
   UpdateStatusRequest,
   GetProfileDetails,
   ProfileUpdateRequest,
+  VerifyEmailRequest,
+  VerifyOtpRequest,
+  ResetPasswordRequest,
 };

@@ -2,7 +2,7 @@ POST http://localhost:5000/api/v1/registration
 Content-Type: application/json
 
 {
-    "email": "ekramullah70@gmail.com",
+    "email": "mirazcse108@gmail.com",
     "firstName": "Ekram",
     "lastName" : "Ullah",
     "mobile" : "01867939463",
@@ -58,3 +58,19 @@ token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NjY3OTg5NjAsImRhdGEiOiJl
 
 GET http://localhost:5000/api/v1/profileDetails
 token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NjcxNTA1NTIsImRhdGEiOiJla3JhbXVsbGFoNzBAZ21haWwuY29tIiwiaWF0IjoxNjY3MDY0MTUyfQ.LM1OTgxJSeyH1Ywmt0NhycOnStSmEh7x7W-LCIVeB6c
+
+###
+GET http://localhost:5000/api/v1/RecoverVerifyEmail/ekramullah70@gmail.com
+
+###
+GET http://localhost:5000/api/v1/RecoverVerifyOTP/ekramullah70@gmail.com/606936
+
+###
+POST http://localhost:5000/api/v1/RecoverResetPass
+Content-Type: application/json
+
+{
+    "email": "ekramullah70@gmail.com",
+    "otp": "606936",
+    "password": "456"
+}

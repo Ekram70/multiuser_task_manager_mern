@@ -2,11 +2,13 @@ import React from 'react';
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import FullSccreenLoader from './components/MasterLayout/FullSccreenLoader';
 import { getToken } from './helpers/SessionHelper';
+import CreatePasswordPage from './pages/AcccountRecover/CreatePasswordPage';
+import SendOtpPage from './pages/AcccountRecover/SendOtpPage';
+import VerifyOtpPage from './pages/AcccountRecover/VerifyOtpPage';
 import CancelledPage from './pages/CancelledPage';
 import CompletedPage from './pages/CompletedPage';
 import CreatePage from './pages/CreatePage';
 import DashboardPage from './pages/DashboardPage';
-import ForgetPassPage from './pages/ForgetPassPage';
 import LoginPage from './pages/LoginPage';
 import NewPage from './pages/NewPage';
 import Page404 from './pages/Page404';
@@ -67,7 +69,13 @@ const App = () => {
             <Route path="/Profile" element={<Navigate to="/login" replace />} />
             <Route exact path="/Login" element={<LoginPage />} />
             <Route exact path="/Registration" element={<RegistrationPage />} />
-            <Route exact path="/ForgetPass" element={<ForgetPassPage />} />
+            <Route exact path="/SendOtp" element={<SendOtpPage />} />
+            <Route exact path="/VerifyOtp" element={<VerifyOtpPage />} />
+            <Route
+              exact
+              path="/CreatePassword"
+              element={<CreatePasswordPage />}
+            />
             <Route exact path="*" element={<Page404 />} />
           </Routes>
         </BrowserRouter>
