@@ -5,7 +5,7 @@ import {
   setEmail,
   setOTP,
   setToken,
-  setUserDetails,
+  setUserDetails
 } from '../helpers/SessionHelper';
 import { setProfile } from '../redux/state-slice/profileSlice';
 import { HideLoader, ShowLoader } from '../redux/state-slice/settingsSlice';
@@ -14,11 +14,12 @@ import {
   setCancelledtask,
   setCompletedTask,
   setNewTask,
-  setProgressTask,
+  setProgressTask
 } from '../redux/state-slice/taskSlice';
 import store from '../redux/store/store';
 
-const BASEURL = 'http://localhost:5000/api/v1';
+const BASEURL = 'https://tame-pear-viper-vest.cyclic.app/api/v1';
+
 
 const RegistrationRequest = async (
   email,
@@ -434,3 +435,4 @@ export {
   VerifyOtpRequest,
   ResetPasswordRequest,
 };
+
