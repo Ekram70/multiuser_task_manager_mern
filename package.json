@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "cd nodemon index.js"
+    "start": "cd server && node start"
   },
   "keywords": [],
   "author": "",
