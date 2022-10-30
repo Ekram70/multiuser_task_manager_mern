@@ -33,9 +33,11 @@ const limiter = rateLimit({ windowMs: 15 * 60 * 1000, max: 3000 });
 app.use(limiter);
 
 // MongoDB database connection
-const DBURI = 'mongodb://localhost:27017/todo';
+const URI =
+  'mongodb+srv://test_user:Test70User@test.f3g6t.mongodb.net/?retryWrites=true&w=majority';
+const option = { user: 'test_user', pass: 'Test70User', autoIndex: true };
 
-mongoose.connect(DBURI, (error) => {
+mongoose.connect(URI, option, (error) => {
   if (!error) {
     console.log('MongoDB connection successful');
   } else {
